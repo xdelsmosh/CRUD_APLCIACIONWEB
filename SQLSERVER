@@ -1,0 +1,46 @@
+Create database CRUD
+Use CRUD
+ create table Usuarios(
+ id_usuario int identity(1,1),
+ Nombre	varchar (15),
+ Edad int,
+ Correo varchar(30),
+ fechaNacimiento Date 
+ )
+
+ Create Procedure sp_load
+ as begin
+ select *from Usuarios
+ end
+
+ create procedure sp_create
+ @Nombre varchar(15),
+ @Edad int,
+ @Correo varchar(30),
+ @Fecha date 
+ as begin 
+ insert into Usuarios values(@Nombre,@Edad,@Correo,@Fecha)
+ end
+  create procedure sp_read
+  @Id int
+  as begin
+  select* from Usuarios where id_usuario=@Id
+  END
+
+create procedure sp_update
+ @Id int,
+ @Nombre varchar(15),
+ @Edad int,
+ @Correo varchar(30),
+ @Fecha date 
+ as begin 
+ update  Usuarios set Nombre=@Nombre,Edad=@Edad,Correo=@Correo,fechaNacimiento=@Fecha
+ where id_usuario=@Id
+ end
+
+create procedure sp_delete
+@Id int
+as begin
+delete from Usuarios where id_usuario=@Id
+end
+select*from Usuarios
